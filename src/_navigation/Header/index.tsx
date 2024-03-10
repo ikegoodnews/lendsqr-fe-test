@@ -88,8 +88,8 @@ const Header = () => {
    );
 
    return !auth ? (
-      <header className="px-3 w-100 d-flex align-items-center justify-content-between">
-         <Link href="/dashboard" onClick={ModalCenter.closeModal} className="d-flex align-items-center">
+      <header className="w-100 d-flex align-items-center justify-content-between">
+         <Link href="/dashboard" onClick={ModalCenter.closeModal} className="logo-link d-flex align-items-center">
             <div className="logo">
                <LenSqrLogo />
             </div>
