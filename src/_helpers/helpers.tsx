@@ -1,3 +1,10 @@
+export function numberWithCommas(num: number) {
+   if (num) {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+   }
+   return 0;
+}
+
 export const numToString = (num: number, bool: boolean) => {
    switch (num) {
       case 1:

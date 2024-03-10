@@ -1,3 +1,7 @@
 .layout__wrapper {
    background-color: #fbfbfb;
+   .layout__wrapper__section {
+      padding: 3.6rem;
+      width: calc(100% - 267.73px);
+   }
 }

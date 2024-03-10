@@ -14,8 +14,12 @@ $color-4a: #39cdcc98;
 $color-5: #213f7d;
 
 $bg-1: rgba(57, 205, 204, 0.06);
+$bg-2: rgba(33, 63, 125, 0.06);
 
 $border-1: rgba(84, 95, 125, 0.15);
+
+$box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.04);
+$box-shadow-2: 3px 5px 20px rgba(0, 0, 0, 0.04);
 
 @keyframes fadeIn {
    from {
@@ -30,5 +34,3 @@ $border-1: rgba(84, 95, 125, 0.15);
 }
 
 $fade1: fadeIn 0.25s ease-in;
-$box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.04);
-// $box-shadow3: 0px 2px 58px rgba($color-4, 0.08);

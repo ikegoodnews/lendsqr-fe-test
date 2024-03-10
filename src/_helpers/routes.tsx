@@ -19,6 +19,11 @@ import BarChart from '../../public/_assets/icons/bar-chart.svg';
 import Sliders from '../../public/_assets/icons/sliders.svg';
 import BadgePercent from '../../public/_assets/icons/badge-percent.svg';
 import ClipList from '../../public/_assets/icons/clipboard-list.svg';
+import TotalUsers from '../../public/_assets/icons/dashboard-users.svg';
+import ActiveUsers from '../../public/_assets/icons/active-users.svg';
+import LoanUsers from '../../public/_assets/icons/loan-users.svg';
+import SavingUsers from '../../public/_assets/icons/users-with-savings.svg';
+import Tyre from '../../public/_assets/icons/tire.svg';
 
 export const pageRoutes = [
    {id: nanoid(), label: 'dashboard', activeCode: 1, icon: <Home />, link: '/dashboard'},
@@ -61,6 +66,14 @@ export const pageRoutes = [
          {id: nanoid(), label: 'preferences', activeCode: 19, icon: <Sliders />, link: '/preferences'},
          {id: nanoid(), label: 'fees and pricing', activeCode: 20, icon: <BadgePercent />, link: '/fees_and_pricing'},
          {id: nanoid(), label: 'audit logs', activeCode: 21, icon: <ClipList />, link: '/audit_logs'},
+         {id: nanoid(), label: 'systems messages', activeCode: 22, icon: <Tyre />, link: '/systems_messages'},
       ],
    },
+];
+
+export const summaryCards = [
+   {id: nanoid(), icon: <TotalUsers />, label: 'users', value: 2453},
+   {id: nanoid(), icon: <ActiveUsers />, label: 'active users', value: 2453},
+   {id: nanoid(), icon: <LoanUsers />, label: 'users with loan', value: 12453},
+   {id: nanoid(), icon: <SavingUsers />, label: 'users with savings', value: 102453},
 ];

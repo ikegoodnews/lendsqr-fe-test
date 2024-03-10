@@ -19,7 +19,7 @@ const Layout = memo((props: PropsWithChildren<classNameProps>) => {
                <Header />
                <div className="contents__inner p-0 d-flex">
                   <Sidebar />
-                  <section className={props.className}>{props.children}</section>
+                  <section className={`layout__wrapper__section ${props.className}`}>{props.children}</section>
                </div>
             </div>
          </div>

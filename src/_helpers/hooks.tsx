@@ -31,6 +31,7 @@ export const useLocationCode = () => {
    const preferences = asPath === '/preferences';
    const fees_and_pricing = asPath === '/fees_and_pricing';
    const audit_logs = asPath === '/audit_logs';
+   const systems_messages = asPath === '/systems_messages';
    // const studentsView = pathname === '/students/[profileUuid]';
 
    if (home || dashboard) {
@@ -75,8 +76,10 @@ export const useLocationCode = () => {
       return 20;
    } else if (audit_logs) {
       return 21;
-   } else {
+   } else if (systems_messages) {
       return 22;
+   } else {
+      return 23;
    }
 };
 

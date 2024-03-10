@@ -1,67 +1,37 @@
-import useOnClickOutside from '@/_components/useOnClickOutside';
 import {useIsAuthRoute, useLocationCode} from '@/_helpers/hooks';
+import useOnClickOutside from '@/_components/useOnClickOutside';
+import ModalCenter from '@/_controllers/ModalCenter';
+import React, {FormEvent, useRef, useState} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import {useRouter} from 'next/router';
-import React, {useCallback, useRef, useState} from 'react';
+import Formsy from 'formsy-react';
+import {TextInput} from '@/_components/CustomInput';
 
 import LenSqrLogo from '../../../public/_assets/icons/lendsqr-logo.svg';
-import ModalCenter from '@/_controllers/ModalCenter';
+import DropdownIcon from '../../../public/_assets/icons/arrow-down.svg';
+import BellIcon from '../../../public/_assets/icons/bell.svg';
+import SearchIcon from '../../../public/_assets/icons/search.svg';
+import Avatar from '../../../public/_assets/images/avataruser.png';
 
 const Pill = () => {
-   const dropRef = useRef<HTMLElement | null | undefined>();
-   const router = useRouter();
-   // const dispatch = useDispatch();
-   // const {bio} = useSelector((s) => s.user);
-   // const {loginSuccess} = useSelector((s) => s.auth);
+   const dropRef = useRef();
    const [dropdown, setDropdown] = useState(false);
 
    useOnClickOutside(dropRef, () => {
       if (dropdown) setDropdown(false);
    });
 
-   const handleClick = () => {
-      router.push('/settings');
-      setDropdown(false);
-   };
-
-   // const handleLogout = useCallback(() => {
-   //    if (bio !== undefined) {
-   //       dispatch(authActions.logout());
-   //    } else {
-   //       router.push('/login');
-   //    }
-   //    setDropdown(false);
-
-   //    // eslint-disable-next-line react-hooks/exhaustive-deps
-   // }, [bio, router]);
-
-   // useEffect(() => {
-   //    const listener = AppEmitter.addListener(authConstants.LOGOUT_SUCCESS, (event) => {
-   //       router.push('/');
-   //    });
-
-   //    return () => listener.remove();
-   //    // eslint-disable-next-line react-hooks/exhaustive-deps
-   // }, []);
-
    return (
-      <div onClick={() => setDropdown(true)} className="user_profile">
+      <div onClick={() => setDropdown(true)} className="user_profile d-flex align-items-center">
          <div className="img">
-            <Image
-               priority
-               src={`https://ui-avatars.com/api/?background=random&font-size=0.33&length=3&name=name}`}
-               alt="zyonel-tech-artwork"
-               height={100}
-               width={100}
-            />
+            <Image priority src={Avatar} alt="user_profile-artwork" height={100} width={100} />
          </div>
-         {dropdown && (
+         <span className="name ms-2 me-1">adedeji</span>
+         <DropdownIcon />
+         {dropdown && ( // ref={dropRef}
             <ul className="drop">
-               <li onClick={handleClick} className="">
-                  settings
-               </li>
-               <li className="">logout</li>
+               <li className="">dropdown item 1</li>
+               <li className="">dropdown item 2</li>
             </ul>
          )}
       </div>
@@ -70,22 +40,8 @@ const Pill = () => {
 
 const Header = () => {
    const auth = useIsAuthRoute();
-   const code = useLocationCode();
 
-   const getPageName = useCallback(
-      (type: number) => {
-         switch (type) {
-            case 1:
-               return 'Dashboard';
-            case 2:
-               return 'Students';
-            default:
-               return '';
-         }
-      },
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      [],
-   );
+   const handleSearch = () => {};
 
    return !auth ? (
       <header className="w-100 d-flex align-items-center justify-content-between">
@@ -94,8 +50,33 @@ const Header = () => {
                <LenSqrLogo />
             </div>
          </Link>
-         <h5 className="pageName fs-5">name{getPageName(code)}</h5>
-         <div className="d-flex align-items-center">here...{/* <Pill /> */}</div>
+         <div className="header__content">
+            <Formsy onValidSubmit={handleSearch} className="">
+               <TextInput
+                  id="search"
+                  type="text"
+                  name="searchInput"
+                  placeholder="Search for anything"
+                  className="search"
+                  useFocusedError
+                  // onKeyPress={(e: FormEvent) => {
+                  //    e.key === 'Enter' && handleSearch();
+                  // }}
+                  rightIcon={
+                     <button type="submit" onClick={handleSearch} className="searchIcon">
+                        <SearchIcon />
+                     </button>
+                  }
+               />
+            </Formsy>
+            <div className="d-flex align-items-center">
+               <p className="docs me-4">docs</p>
+               <div className="bell mx-4">
+                  <BellIcon />
+               </div>
+               <Pill />
+            </div>
+         </div>
       </header>
    ) : null;
 };

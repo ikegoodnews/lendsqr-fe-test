@@ -6,8 +6,9 @@ import {pageRoutes} from '@/_helpers/routes';
 import classNames from 'classnames';
 import Link from 'next/link';
 
-import BriefCaseIcon from '../../../public/_assets/icons/briefcase.svg';
 import ArrowDownIcon from '../../../public/_assets/icons/arrow-down-2.svg';
+import BriefCaseIcon from '../../../public/_assets/icons/briefcase.svg';
+import LogoutIcon from '../../../public/_assets/icons/sign-out.svg';
 
 // eslint-disable-next-line react/display-name
 const Sidebar = memo(() => {
@@ -24,7 +25,7 @@ const Sidebar = memo(() => {
    return !auth ? (
       <div
          // ref={sideRef}
-         className={classNames('sidebar p-0 pb-5', {
+         className={classNames('sidebar p-0 pb-3', {
             // hidden: view1090 && !modalOpen,
             // 'position-fixed': view1090,
          })}>
@@ -85,7 +86,22 @@ const Sidebar = memo(() => {
                   )}
                </li>
             ))}
+            <hr className="mb-2" />
+            <li className="last">
+               <Link
+                  href={'/' as string}
+                  className={classNames('h-100 d-flex align-items-center', {
+                     active: '',
+                  })}
+                  onClick={ModalCenter.closeModal}>
+                  <div className={classNames('icon-wrapper h-100 d-flex align-items-center justify-content-center', {})}>
+                     <LogoutIcon />
+                  </div>
+                  <span className="text-nowrap">Logout</span>
+               </Link>
+            </li>
          </ul>
+         <div className="version">v1.2.0</div>
       </div>
    ) : null;
 });
