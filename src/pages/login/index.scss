@@ -1,0 +1,144 @@
+.login__page {
+   background-color: $white;
+   .welcome {
+      // background-color: rgba(84, 95, 125, 0.15);
+      box-shadow: $box-shadow;
+   }
+   .left,
+   .right {
+      width: 73%;
+      margin: 0 auto;
+   }
+   .left {
+      height: 100%;
+      display: flex;
+      // align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      position: relative;
+   }
+   .right {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   }
+   .lendsqr__logo {
+      width: 12rem;
+      position: absolute;
+      top: 5rem;
+      left: 0rem;
+   }
+   .lendsqr_login_artwork {
+      svg {
+         // scale: 0.8;
+      }
+   }
+   .login__form {
+      h3 {
+         font-size: 2.3rem;
+         font-weight: 700;
+         color: $color-1;
+      }
+      p {
+         font-size: 1.2rem;
+         color: $color-2;
+      }
+      .text-input {
+         .wrapper {
+            label {
+               position: absolute;
+               color: rgba($color: $color-2, $alpha: 0.6);
+               font-size: 14px;
+               font-weight: 500;
+               padding: 4px 5px;
+               top: 10px;
+               left: 17px;
+               font-weight: 400;
+               background-color: $white;
+               transition: $trans;
+            }
+            &.focus,
+            &.filled {
+               label {
+                  color: rgba($color: $color-2, $alpha: 0.8);
+                  transform: translateY(-24px) translateX(-12px) scale(0.9);
+               }
+            }
+            input {
+               border: 2px solid $border-1;
+               border-radius: 5px;
+               color: $color-2;
+               padding: 0.7rem;
+               font-weight: 500;
+               background: transparent;
+            }
+            .pass_toggle {
+               top: 0;
+               right: 0.5rem;
+               bottom: 0;
+               width: 58px;
+               font-size: 0.75rem;
+               color: $color-4;
+               font-weight: 500;
+               letter-spacing: 1.5px;
+               cursor: pointer;
+               svg {
+                  transform: scale(0.8);
+               }
+            }
+         }
+         &.pass {
+            input {
+               padding-right: 4rem;
+            }
+         }
+         &.error {
+            .wrapper {
+               input {
+                  color: $error;
+                  border: 2px solid $error;
+               }
+               label {
+                  color: $error;
+               }
+            }
+         }
+         &.success {
+            .wrapper {
+               input {
+                  color: $success;
+                  border: 2px solid $success;
+               }
+               label {
+                  color: $success;
+               }
+            }
+         }
+         p {
+            font-size: 0.8rem;
+            // white-space: nowrap;
+         }
+      }
+      .forgot-pass {
+         font-size: 0.75rem;
+         color: $color-4;
+         font-weight: 500;
+         letter-spacing: 1.5px;
+      }
+      .submit {
+         font-size: 0.9rem;
+         letter-spacing: 1px;
+         font-weight: 500;
+         color: $white;
+         border-radius: 8px;
+         padding: 0.8rem 0;
+         background-color: $color-4;
+         transition: 0.2s ease-in;
+         &:hover,
+         &:disabled {
+            background-color: $color-4a;
+         }
+      }
+   }
+}

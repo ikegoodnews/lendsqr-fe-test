@@ -1,0 +1,37 @@
+.pagination {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   .lines {
+      li {
+         cursor: pointer;
+      }
+   }
+   li {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: $color-12;
+      transition: $trans1;
+      svg {
+         scale: 0.7;
+      }
+      &.pages {
+         color: $color-8;
+         border-radius: 4px;
+         padding: 0.2rem 0.5rem;
+         min-width: 23px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         &:hover,
+         &.active {
+            color: $white;
+            background: $color-1;
+         }
+      }
+      &.disabled {
+         color: $color-14;
+         cursor: auto;
+      }
+   }
+}

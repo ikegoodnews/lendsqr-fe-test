@@ -1,0 +1,159 @@
+.custom-table {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: space-between;
+   background: $white;
+   box-shadow: $box-shadow;
+   border-radius: 7px;
+   overflow-x: auto;
+   -webkit-overflow-scrolling: touch;
+
+   .bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .search-form {
+         background: $white;
+         border: 1px solid #f5f6f6;
+         border-radius: 4px;
+         color: $color-8;
+         input {
+            font-weight: 600;
+            color: $color-4;
+            font-size: 0.85rem;
+            padding: 0.8rem 0.8rem 0.8rem 2.7rem;
+            border: none;
+            width: 18rem !important;
+         }
+         .icon-wrap {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            svg {
+               scale: 0.8;
+            }
+         }
+      }
+      .filter {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         position: relative;
+         font-size: 0.85rem;
+         &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 1px;
+            background: #e6e8e9;
+         }
+      }
+      .dwnld {
+         background: $color-1;
+         color: $white;
+         font-size: 0.85rem;
+         padding: 0.9rem 1.2rem;
+         border-radius: 9px;
+         font-weight: 600;
+         transition: $trans2;
+         &:hover {
+            background: $color-1a;
+         }
+      }
+   }
+   table {
+      width: 100%;
+      thead,
+      tbody {
+         tr {
+            th,
+            td {
+               font-size: 0.85rem;
+               padding: 1rem;
+               form.check {
+                  input {
+                     &:checked {
+                        background-color: $color-1;
+                        border-color: $color-1;
+                        box-shadow: none;
+                     }
+                     &:focus {
+                        box-shadow: none;
+                     }
+                  }
+               }
+            }
+         }
+      }
+      thead {
+         tr {
+            border-top: 1px solid rgba(230, 232, 233, 0.5);
+            background: #fffbfb;
+            th {
+               font-weight: 700;
+               color: $color-12;
+            }
+         }
+      }
+      tbody {
+         tr {
+            border-bottom: 1px solid rgba(230, 232, 233, 0.5);
+            th,
+            td {
+               font-weight: 600;
+               color: $color-8;
+               .img {
+                  --size: 2.5rem;
+                  width: var(--size);
+                  height: var(--size);
+                  border-radius: 50%;
+                  overflow: hidden;
+                  background: #888;
+               }
+               .name {
+                  text-overflow: ellipsis;
+                  overflow: hidden;
+                  white-space: nowrap;
+                  width: 6.5rem;
+               }
+               .icon-drop {
+                  position: relative;
+                  svg {
+                     scale: 0.8;
+                     cursor: pointer;
+                  }
+                  .dropdown {
+                     position: absolute;
+                     top: 100%;
+                     right: 1.5rem;
+                     background-color: $white;
+                     box-shadow: $box-shadow2;
+                     border-radius: 5px;
+                     overflow: hidden;
+                     width: fit-content;
+                     z-index: 5;
+                     button {
+                        width: 100%;
+                        text-align: start;
+                        padding: 1rem 2.5rem 1rem 1rem;
+                        color: $color-4;
+                        transition: $trans2;
+                        &:hover {
+                           background: #eee;
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+}
