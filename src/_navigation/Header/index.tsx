@@ -6,12 +6,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Formsy from 'formsy-react';
 import {TextInput} from '@/_components/CustomInput';
+import {useMediaQuery} from 'react-responsive';
 
 import LenSqrLogo from '../../../public/_assets/icons/lendsqr-logo.svg';
 import DropdownIcon from '../../../public/_assets/icons/arrow-down.svg';
 import BellIcon from '../../../public/_assets/icons/bell.svg';
 import SearchIcon from '../../../public/_assets/icons/search.svg';
 import Avatar from '../../../public/_assets/images/avataruser.png';
+import {nanoid} from 'nanoid';
 
 const Pill = () => {
    const dropRef = useRef();
@@ -40,6 +42,7 @@ const Pill = () => {
 
 const Header = () => {
    const auth = useIsAuthRoute();
+   const view999 = useMediaQuery({query: '(max-width: 999px)'});
 
    const handleSearch = () => {};
 
@@ -50,7 +53,7 @@ const Header = () => {
                <LenSqrLogo />
             </div>
          </Link>
-         <div className="header__content">
+         <div className="header__content d-none d-lg-flex">
             <Formsy onValidSubmit={handleSearch} className="">
                <TextInput
                   id="search"
@@ -70,13 +73,14 @@ const Header = () => {
                />
             </Formsy>
             <div className="d-flex align-items-center">
-               <p className="docs me-4">docs</p>
-               <div className="bell mx-4">
+               <p className="docs me-4 d-none d-lg-block">docs</p>
+               <div className="bell mx-4 d-none d-lg-block">
                   <BellIcon />
                </div>
                <Pill />
             </div>
          </div>
+         {view999 && <i className="fa fa-bars ms-4" id="sidebarIcon" onClick={ModalCenter.openModal} aria-hidden="true"></i>}
       </header>
    ) : null;
 };

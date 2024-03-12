@@ -6,6 +6,13 @@
       width: calc(100% - 267.73px);
       height: calc(100vh - 5.9rem);
 
+      @media screen and (max-width: 999px) {
+         width: 100%;
+      }
+      @media screen and (max-width: 575px) {
+         padding: 1.6rem;
+      }
+
       overflow-y: scroll;
       mask-image: linear-gradient(to top, transparent, black), linear-gradient(to left, transparent 5px, black 5px);
       mask-size: 100% 20000px;

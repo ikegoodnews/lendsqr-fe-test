@@ -5,6 +5,14 @@
       cursor: pointer;
       span {
          font-size: 0.95rem;
+         @media screen and (max-width: 390px) {
+            font-size: 0.75rem;
+         }
+      }
+   }
+   @media screen and (max-width: 390px) {
+      .title {
+         font-size: 1rem;
       }
    }
    .blacklist__user,
@@ -17,6 +25,10 @@
       border-style: solid;
       text-transform: uppercase;
       font-weight: 500;
+      @media screen and (max-width: 390px) {
+         font-size: 0.6rem;
+         padding: 0.5rem 0.7rem;
+      }
    }
    .blacklist__user {
       color: $color-7;
@@ -91,6 +103,7 @@
          }
       }
       ul {
+         width: fit-content;
          li {
             font-size: 0.95rem;
             // text-transform: capitalize;
@@ -109,6 +122,9 @@
       }
    }
    .personal__information {
+      &:not(:last-of-type) {
+         border-bottom: 1px solid fade-out($color-1, 0.9);
+      }
       .d__grid {
          > div {
             display: grid;

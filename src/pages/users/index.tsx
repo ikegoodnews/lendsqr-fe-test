@@ -30,7 +30,7 @@ const Users = () => {
          <h4 className="pb-3">Users</h4>
          <div className="row my-4">
             {summaryCards?.map((card, i) => (
-               <div key={i} className="col-lg-3 col-md-4 col-sm-6 mb-4">
+               <div key={i} className="col-xl-3 col-md-4 col-sm-6 mb-4">
                   <div className="cards p-4 h-100">
                      <div className="icon">{card.icon}</div>
                      <p className="my-2">{card.label}</p>

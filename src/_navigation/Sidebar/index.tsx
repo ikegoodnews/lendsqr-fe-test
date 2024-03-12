@@ -1,22 +1,30 @@
 import {useIsAuthRoute, useLocationCode} from '@/_helpers/hooks';
-import ModalCenter from '@/_controllers/ModalCenter';
+import ModalCenter, {useModalCenter} from '@/_controllers/ModalCenter';
 import {numToString} from '@/_helpers/helpers';
 import React, {memo, useCallback, useRef, useState} from 'react';
 import {pageRoutes} from '@/_helpers/routes';
+import {useMediaQuery} from 'react-responsive';
 import classNames from 'classnames';
 import Link from 'next/link';
+import {useOnClickOutside} from '@/_components';
 
 import ArrowDownIcon from '../../../public/_assets/icons/arrow-down-2.svg';
 import BriefCaseIcon from '../../../public/_assets/icons/briefcase.svg';
 import LogoutIcon from '../../../public/_assets/icons/sign-out.svg';
-import {useOnClickOutside} from '@/_components';
 
 // eslint-disable-next-line react/display-name
 const Sidebar = memo(() => {
    const ulRef = useRef(null);
+   const sideRef = useRef(null);
    const auth = useIsAuthRoute();
    const code = useLocationCode();
    const [drop, setDrop] = useState(false);
+   const {modalOpen} = useModalCenter();
+   const view999 = useMediaQuery({query: '(max-width: 999px)'});
+
+   useOnClickOutside(sideRef, () => {
+      if (view999 && modalOpen) ModalCenter.closeModal();
+   });
 
    useOnClickOutside(ulRef, () => {
       if (drop) setDrop(false);
@@ -31,12 +39,12 @@ const Sidebar = memo(() => {
 
    return !auth ? (
       <div
-         // ref={sideRef}
+         ref={sideRef}
          className={classNames('sidebar p-0 pb-3', {
-            // hidden: view1090 && !modalOpen,
-            // 'position-fixed': view1090,
+            hidden: view999 && !modalOpen,
+            'position-fixed': view999,
          })}>
-         {/* {view1090 && <FaTimes id="sidebarIcon" onClick={ModalCenter.closeModal} />} */}
+         {view999 && <i className="fa fa-times" id="sidebarIcon" onClick={ModalCenter.closeModal} aria-hidden="true"></i>}
          <div className="switch-organization">
             <div className={classNames('icon-wrapper h-100 d-flex align-items-center justify-content-center', {})}>
                <BriefCaseIcon />

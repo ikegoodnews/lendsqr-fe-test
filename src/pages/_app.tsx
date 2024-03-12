@@ -7,7 +7,7 @@ import {useEffect} from 'react';
 import {Provider} from 'react-redux';
 import {wrapper} from '@/_helpers/store';
 import {PersistGate} from 'redux-persist/integration/react';
-import {userActions} from '@/_actions';
+// import {userActions} from '@/_actions';
 import Lottie from 'react-lottie';
 
 import screenLoader from '../../public/_assets/animations/screen_loader.json';

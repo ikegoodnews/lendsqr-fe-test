@@ -81,25 +81,25 @@ const UserDetails = () => {
             <span className="ms-2">Back to Users</span>
          </div>
 
-         <div className="w-100 d-flex align-items-center justify-content-between">
-            <h4 className="pb-3">User Details</h4>
-            <div className="my-4 py-3 d-flex align-items-center">
+         <div className="w-100 d-flex flex-wrap align-items-center justify-content-between">
+            <h4 className="pb-0 pb-md-3 title">User Details</h4>
+            <div className="my-2 my-md-4 py-3 d-flex align-items-center">
                <button className="blacklist__user">blacklist user</button>
                <button className="ms-3 activate__user">activate user</button>
             </div>
          </div>
 
          <div className="w-100 details mb-4">
-            <div className="p-4 pb-5 d-flex align-items-center">
+            <div className="p-4 pb-5 d-flex flex-wrap align-items-center">
                <div className="image">
                   <AvatarIcon />
                   {/* <Image priority src={Avatar} alt="user_profile-artwork" height={100} width={100} /> */}
                </div>
-               <div className="name mx-3">
+               <div className="name mx-3 mt-sm-0 my-4">
                   <h4 className="">grace effiom</h4>
                   <span className="">lsqff587g90</span>
                </div>
-               <div className="user__tier">
+               <div className="user__tier mt-md-0 mt-4">
                   <p className="">user&apos;s tier</p>
                   <StarRating
                      unit="full"
@@ -118,7 +118,7 @@ const UserDetails = () => {
                      containerClassName=""
                   />
                </div>
-               <div className="bank__details mx-3">
+               <div className="bank__details mx-3 mt-lg-0 mt-4">
                   <h4 className="">&#8358;{numberWithCommas(200000)}.00</h4>
                   <small className="account__details">
                      9912345678/<span className="">Providus bank</span>
@@ -163,7 +163,7 @@ const UserDetails = () => {
                </div>
                <div className="personal__information py-4">
                   <h5 className="">socials</h5>
-                  <div className="d-flex align-items-center">
+                  <div className="d__grid d-flex flex-wrap">
                      {socials?.map((social, i) => (
                         <div key={i} className="my-3 me-5 pe-4">
                            <p className="pb-2">{social?.label}</p>
@@ -184,7 +184,7 @@ const UserDetails = () => {
                   </div>
                </div>
                <div className="personal__information py-4">
-                  <h5 className=""></h5>
+                  <h5 className="">guarantor</h5>
                   <div className="d-flex align-items-center">
                      <div className="">
                         <p className=""></p>
