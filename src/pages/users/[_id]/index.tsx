@@ -89,7 +89,7 @@ const UserDetails = () => {
             </div>
          </div>
 
-         <div className="w-100 details">
+         <div className="w-100 details mb-4">
             <div className="p-4 pb-5 d-flex align-items-center">
                <div className="image">
                   <AvatarIcon />
@@ -127,68 +127,79 @@ const UserDetails = () => {
             </div>
             <ul className="d-flex align-items-center justify-content-around">
                {tabLists?.map((list, i) => (
-                  <li key={i} onClick={() => setActiveTab(list.tab_number)} className={classNames('', {active: activeTab === list.tab_number})}>
+                  <li
+                     key={i}
+                     onClick={() => setActiveTab(list.tab_number)}
+                     className={classNames('text-nowrap', {active: activeTab === list.tab_number})}>
                      {list.label}
                   </li>
                ))}
             </ul>
          </div>
 
-         <div className="comple">
-            <div className="personal__information">
-               <h5 className="">Personal Information</h5>
-               <div className="d-flex align-items-center">
-                  {personalInformation?.map((info, i) => (
-                     <div key={i} className="">
-                        <p className="">{info?.label}</p>
-                        <h6 className="">{info?.value}</h6>
-                     </div>
-                  ))}
+         {activeTab === 1 && (
+            <div className="complete__details px-4 w-100">
+               <div className="personal__information py-4">
+                  <h5 className="">Personal Information</h5>
+                  <div className="d__grid d-flex flex-wrap">
+                     {personalInformation?.map((info, i) => (
+                        <div key={i} className="my-3 me-5 pe-4">
+                           <p className="pb-2">{info?.label}</p>
+                           <h6 className="">{info?.value}</h6>
+                        </div>
+                     ))}
+                  </div>
                </div>
-            </div>
-            <div className="personal__information">
-               <h5 className="">education and employment</h5>
-               <div className="d-flex align-items-center">
-                  {educationAndEmployment?.map((edu, i) => (
-                     <div key={i} className="">
-                        <p className="">{edu?.label}</p>
-                        <h6 className="">{edu?.value}</h6>
-                     </div>
-                  ))}
+               <div className="personal__information py-4">
+                  <h5 className="">education and employment</h5>
+                  <div className="d__grid d-flex flex-wrap">
+                     {educationAndEmployment?.map((edu, i) => (
+                        <div key={i} className="my-3 me-5 pe-4">
+                           <p className="pb-2">{edu?.label}</p>
+                           <h6 className="">{edu?.value}</h6>
+                        </div>
+                     ))}
+                  </div>
                </div>
-            </div>
-            <div className="personal__information">
-               <h5 className="">socials</h5>
-               <div className="d-flex align-items-center">
-                  {socials?.map((social, i) => (
-                     <div key={i} className="">
-                        <p className="">{social?.label}</p>
-                        <h6 className="">{social?.value}</h6>
-                     </div>
-                  ))}
+               <div className="personal__information py-4">
+                  <h5 className="">socials</h5>
+                  <div className="d-flex align-items-center">
+                     {socials?.map((social, i) => (
+                        <div key={i} className="my-3 me-5 pe-4">
+                           <p className="pb-2">{social?.label}</p>
+                           <h6 className="">{social?.value}</h6>
+                        </div>
+                     ))}
+                  </div>
                </div>
-            </div>
-            <div className="personal__information">
-               <h5 className="">guarantor</h5>
-               <div className="d-flex align-items-center">
-                  {/* {user?.guarantors?.slice(0, 1)?.map((guarantor, i) => (
+               <div className="personal__information py-4">
+                  <h5 className="">guarantor</h5>
+                  <div className="d-flex align-items-center">
+                     {/* {user?.guarantors?.slice(0, 1)?.map((guarantor, i) => (
                      <div key={i} className="">
                         <p className="">{guarantor?.}</p>
                         <h6 className=""></h6>
                   </div>
                ))} */}
+                  </div>
                </div>
-            </div>
-            <div className="personal__information">
-               <h5 className=""></h5>
-               <div className="d-flex align-items-center">
-                  <div className="">
-                     <p className=""></p>
-                     <h6 className=""></h6>
+               <div className="personal__information py-4">
+                  <h5 className=""></h5>
+                  <div className="d-flex align-items-center">
+                     <div className="">
+                        <p className=""></p>
+                        <h6 className=""></h6>
+                     </div>
                   </div>
                </div>
             </div>
-         </div>
+         )}
+
+         {activeTab === 2 && <div className="p-4 details">documents</div>}
+         {activeTab === 3 && <div className="p-4 details">bank details</div>}
+         {activeTab === 4 && <div className="p-4 details">loans</div>}
+         {activeTab === 5 && <div className="p-4 details">savings</div>}
+         {activeTab === 6 && <div className="p-4 details">app and system</div>}
       </Layout>
    );
 };

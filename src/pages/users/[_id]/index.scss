@@ -26,11 +26,13 @@
       color: $color-4;
       border-color: $color-4;
    }
-   .details {
+   .details,
+   .complete__details {
       background-color: $white;
       box-shadow: $box-shadow-2;
       border-radius: 4px;
       border: 1px solid fade-out($color-1, 0.98);
+      overflow-x: auto;
       .image {
          --size: 6rem;
          width: var(--size);
@@ -43,6 +45,7 @@
          background-color: fade-out($color-2, 0.8);
       }
       .name {
+         white-space: nowrap;
          text-transform: capitalize;
          h4 {
             font-size: 1.3rem;
@@ -103,6 +106,30 @@
                color: $color-4;
             }
          }
+      }
+   }
+   .personal__information {
+      .d__grid {
+         > div {
+            display: grid;
+            grid-template-columns: repeat(1fr, 5);
+            // grid-template-rows: auto;
+            grid-template-areas:
+               'box box box box box'
+               'box box box . .';
+         }
+      }
+      h5 {
+         color: $color-1;
+      }
+      p {
+         text-transform: uppercase;
+         font-size: 0.7rem;
+         color: $color-2;
+      }
+      h6 {
+         font-size: 0.9rem;
+         color: $color-2;
       }
    }
 }
