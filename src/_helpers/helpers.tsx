@@ -1,3 +1,37 @@
+import localForage from 'localforage';
+
+export const getObjectFromStorage = async (key: string) => {
+   try {
+      const object = await localForage.getItem(key);
+
+      if (!object) {
+         return null;
+      }
+
+      return object;
+   } catch (error) {
+      throw error;
+   }
+};
+
+export const clearObjectFromStorage = async (key: string) => {
+   try {
+      await localForage.removeItem(key);
+      return true;
+   } catch (error) {
+      throw error;
+   }
+};
+
+export const setObjectInStorage = async (key: string, object: {}) => {
+   try {
+      await localForage.setItem(key, object);
+      return true;
+   } catch (error) {
+      throw error;
+   }
+};
+
 export function numberWithCommas(num: number) {
    if (num) {
       return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');

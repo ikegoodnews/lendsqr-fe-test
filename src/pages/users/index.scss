@@ -25,4 +25,90 @@
          color: $color-1;
       }
    }
+   .table-responsive {
+      border-radius: 4px;
+      background-color: $white;
+      box-shadow: $box-shadow-2;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: 0px; /* Firefox */
+      &::-webkit-scrollbar {
+         height: 0;
+      }
+      &::-webkit-scrollbar-track {
+         background: transparent;
+      }
+      &::-webkit-scrollbar-thumb {
+         background-color: $color-2;
+         border-radius: 10px;
+      }
+      table {
+         width: 100%;
+         thead > tr > th {
+            padding: 0 0.8rem 0.8rem 0.8rem;
+         }
+         thead,
+         tbody {
+            tr {
+               th,
+               td {
+                  white-space: nowrap;
+                  color: $color-2;
+                  font-size: 0.73rem;
+                  font-weight: 600;
+                  svg {
+                     margin-left: 0.3rem;
+                  }
+               }
+            }
+         }
+         tbody {
+            tr {
+               position: relative;
+               &::after {
+                  content: '';
+                  position: absolute;
+                  height: 1px;
+                  width: 100%;
+                  top: 100%;
+                  left: 0;
+               }
+               &:not(:last-of-type) {
+                  &::after {
+                     background-color: fade-out($color-1, 0.9);
+                  }
+               }
+               th,
+               td {
+                  padding: 1rem 0.8rem;
+                  font-size: 0.82rem;
+                  font-weight: 400;
+                  > div {
+                     padding: 0.3rem 0.4rem;
+                     border-radius: 12px;
+                     width: fit-content;
+                     &.active {
+                        color: $color-8;
+                        background-color: rgba($color-8, 0.1);
+                     }
+                     &.inactive {
+                        color: $color-2;
+                        background-color: rgba($color-2, 0.1);
+                     }
+                     &.blacklisted {
+                        color: $color-7;
+                        background-color: rgba($color-7, 0.1);
+                     }
+                     &.pending {
+                        color: $color-6;
+                        background-color: rgba($color-6, 0.1);
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
 }

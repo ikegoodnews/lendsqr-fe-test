@@ -2,8 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 
 // import Start from '../../../public/_assets/icons/start.svg';
-import Prev from '../../../public/_assets/icons/prev.svg';
-import Next from '../../../public/_assets/icons/next2.svg';
+import Prev from '../../../public/_assets/icons/arrow-left.svg';
+import Next from '../../../public/_assets/icons/arrow-right.svg';
 // import End from '../../../public/_assets/icons/end.svg';
 
 const Pagination = (props) => {

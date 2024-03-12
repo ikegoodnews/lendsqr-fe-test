@@ -4,6 +4,8 @@ import '@/styles/index.scss';
 import type {AppProps} from 'next/app';
 import Head from 'next/head';
 import {useEffect} from 'react';
+import {Provider} from 'react-redux';
+import store from '@/_helpers/store';
 
 if (process.env.NODE_ENV !== 'development') {
    console.log = () => {};
@@ -26,7 +28,9 @@ export default function App({Component, pageProps}: AppProps) {
             <link rel="preconnect" href="https://fonts.gstatic.com" />
             {/* <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" /> */}
          </Head>
-         <Component {...pageProps} />
+         <Provider store={store}>
+            <Component {...pageProps} />
+         </Provider>
       </>
    );
 }

@@ -34,9 +34,9 @@ export const useLocationCode = () => {
    const systems_messages = asPath === '/systems_messages';
    // const studentsView = pathname === '/students/[profileUuid]';
 
-   if (home || dashboard) {
+   if (dashboard) {
       return 1;
-   } else if (users) {
+   } else if (home || users) {
       return 2;
    } else if (guarantors) {
       return 3;

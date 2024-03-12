@@ -3,5 +3,35 @@
    .layout__wrapper__section {
       padding: 3.6rem;
       width: calc(100% - 267.73px);
+      height: calc(100vh - 5.9rem);
+
+      overflow-y: scroll;
+      mask-image: linear-gradient(to top, transparent, black), linear-gradient(to left, transparent 5px, black 5px);
+      mask-size: 100% 20000px;
+      mask-position: left bottom;
+      -webkit-mask-image: linear-gradient(to top, transparent, black), linear-gradient(to left, transparent 5px, black 5px);
+      -webkit-mask-size: 100% 20000px;
+      -webkit-mask-position: left bottom;
+      transition:
+         mask-position 0.3s,
+         -webkit-mask-position 0.3s;
+
+      &:hover {
+         -webkit-mask-position: left top;
+         mask-position: left top;
+      }
+
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: 5px; /* Firefox */
+      &::-webkit-scrollbar {
+         width: 5px;
+      }
+      &::-webkit-scrollbar-track {
+         background: transparent;
+      }
+      &::-webkit-scrollbar-thumb {
+         background-color: $color-2;
+         border-radius: 10px;
+      }
    }
 }

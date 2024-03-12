@@ -1,0 +1,10 @@
+export const userConstants = {
+   USER_STORE_KEY: 'lendsqr-fe-test-users',
+
+   GET_ALL_USERS_SUCCESS: 'GET_ALL_USERS_SUCCESS',
+   REQUESTING_ALL_USERS: 'REQUESTING_ALL_USERS',
+   GET_ALL_USERS_ERROR: 'GET_ALL_USERS_ERROR',
+   GET_ALL_USERS: 'GET_ALL_USERS',
+
+   USER_URI: '',
+};
