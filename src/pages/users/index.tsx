@@ -1,46 +1,27 @@
 import {numberWithCommas, setObjectInStorage, summaryCards} from '@/_helpers';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Layout from '@/_components/Layout';
-import axios from 'axios';
+// import axios from 'axios';
+import {format} from 'date-fns';
+import classNames from 'classnames';
+import {Pagination, useOnClickOutside} from '@/_components';
+// import {userConstants} from '@/_constants';
+import {useDispatch, useSelector} from 'react-redux';
+import {userActions} from '@/_actions';
 
 import FilterIcon from '../../../public/_assets/icons/filter.svg';
 import DotsIcon from '../../../public/_assets/icons/3-dots.svg';
-import {format} from 'date-fns';
-import classNames from 'classnames';
-import {Pagination} from '@/_components';
-import {userConstants} from '@/_constants';
+import EyeIcon from '../../../public/_assets/icons/eye.svg';
+import UserTimesIcon from '../../../public/_assets/icons/user-times-2.svg';
+import UserCheckIcon from '../../../public/_assets/icons/user-check-2.svg';
+import {useRouter} from 'next/router';
 
 const Users = () => {
-   const [data, setData] = useState<any[]>([]);
-   const [isFetchingData, setIsFetchingData] = useState(false);
+   const dispatch = useDispatch();
+   const {IsRequestingAllUsers, allUsers} = useSelector((s: any) => s.user);
 
    useEffect(() => {
-      (async () => {
-         try {
-            setIsFetchingData(true);
-            await axios({
-               url: `https://run.mocky.io/v3/8140500f-f58d-49de-a3e5-798437cb162d`,
-               method: 'GET',
-               headers: {
-                  // Authorization: `Bearer ${bio?.token}`,
-               },
-            })
-               .then((res) => {
-                  console.log('data?.data', res?.data);
-                  setIsFetchingData(false);
-                  setObjectInStorage(userConstants.USER_STORE_KEY, res?.data);
-                  setData(res?.data);
-               })
-               .catch((e) => {
-                  console.log('error fetching data', e);
-                  setIsFetchingData(false);
-               });
-         } catch (e) {
-            // error reading value
-            console.log('Something went wrong', e);
-            setIsFetchingData(false);
-         }
-      })();
+      dispatch(userActions.retrieveAllUsers());
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, []);
 
@@ -60,7 +41,7 @@ const Users = () => {
          </div>
 
          <div className="table-responsive p-4">
-            {isFetchingData ? (
+            {IsRequestingAllUsers ? (
                'loading...'
             ) : (
                <table className="">
@@ -88,30 +69,8 @@ const Users = () => {
                      </tr>
                   </thead>
                   <tbody className="">
-                     {data?.length ? (
-                        data?.slice(0, 10)?.map((user, i) => (
-                           <tr key={i} className="d-table-row">
-                              <td className="ps-0">{user?.organization}</td>
-                              <td>{user?.username}</td>
-                              <td>{user?.email}</td>
-                              <td>{user?.phone}</td>
-                              <td>{user?.registered ? format(new Date(user?.registered), 'MMM dd, yyyy p') : '-'}</td>
-                              <td className="text-capitalize">
-                                 <div
-                                    className={classNames('', {
-                                       active: user?.status === 'active',
-                                       inactive: user?.status === 'inactive',
-                                       pending: user?.status === 'pending',
-                                       blacklisted: user?.status === 'blacklisted',
-                                    })}>
-                                    {user?.status}
-                                 </div>
-                              </td>
-                              <td className="p-0">
-                                 <DotsIcon />
-                              </td>
-                           </tr>
-                        ))
+                     {allUsers?.length ? (
+                        allUsers?.slice(0, 10)?.map((user: any, i: number) => <TableRow key={user?.id} i={i} user={user} />)
                      ) : (
                         <tr className="d-table-row">
                            <td align="center" className="pt-5" colSpan={6}>
@@ -122,22 +81,92 @@ const Users = () => {
                   </tbody>
                </table>
             )}
-            {!isFetchingData && (
-               <Pagination
-                  rowsPerPageOptions={[]}
-                  // colSpan={2}
-                  // count={total}
-                  // rowsPerPage={rowsPerPage}
-                  // page={page}
-                  // from={from}
-                  // to={to}
-                  // onChangePage={handleChangePage}
-                  // lastPage={lastPage}
-               />
-            )}
          </div>
+         {!IsRequestingAllUsers && (
+            <Pagination
+               rowsPerPageOptions={[]}
+               // colSpan={2}
+               count={allUsers?.length}
+               // rowsPerPage={rowsPerPage}
+               // page={page}
+               // from={from}
+               // to={to}
+               // onChangePage={handleChangePage}
+               // lastPage={lastPage}
+            />
+         )}
       </Layout>
    );
 };
 
 export default Users;
+
+const TableRow = ({user, i}: any) => {
+   const ulRef = useRef<HTMLUListElement>(null);
+   const router = useRouter();
+   const [drop, setDrop] = useState(false);
+
+   useOnClickOutside(ulRef, () => {
+      if (drop) setDrop(false);
+      // switch (drop) {
+      //    case open:
+      //       return setDrop(true);
+      //    case deleteModal:
+      //       return setDrop(true);
+      //    default:
+      //       return setDrop(false);
+      // }
+   });
+
+   const handleClick = () => {
+      router.push(
+         {
+            pathname: `/users/[_id]`,
+            query: {
+               _id: user?._id,
+               username: user?.username,
+            },
+         },
+         `/users/[_id]`,
+      );
+   };
+
+   return (
+      <tr key={i} className="d-table-row">
+         <td className="ps-0">{user?.organization}</td>
+         <td>{user?.username}</td>
+         <td>{user?.email}</td>
+         <td>{user?.phone}</td>
+         <td>{user?.registered ? format(new Date(user?.registered), 'MMM dd, yyyy p') : '-'}</td>
+         <td className="text-capitalize">
+            <div
+               className={classNames('colors', {
+                  active: user?.status === 'active',
+                  inactive: user?.status === 'inactive',
+                  pending: user?.status === 'pending',
+                  blacklisted: user?.status === 'blacklisted',
+               })}>
+               {user?.status}
+            </div>
+         </td>
+         <td className="p-0">
+            <div className="options">
+               <DotsIcon onClick={() => setDrop((s) => !s)} />
+               {drop && (
+                  <ul ref={ulRef} className="drop">
+                     <li onClick={handleClick} className="">
+                        <EyeIcon className="me-1" /> view details
+                     </li>
+                     <li className="">
+                        <UserTimesIcon className="me-1" /> blacklist user
+                     </li>
+                     <li className="">
+                        <UserCheckIcon className="me-1" /> activate user
+                     </li>
+                  </ul>
+               )}
+            </div>
+         </td>
+      </tr>
+   );
+};

@@ -1,6 +1,7 @@
 .layout__wrapper {
    background-color: #fbfbfb;
    .layout__wrapper__section {
+      animation: $fade1;
       padding: 3.6rem;
       width: calc(100% - 267.73px);
       height: calc(100vh - 5.9rem);

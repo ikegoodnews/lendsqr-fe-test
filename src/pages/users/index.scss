@@ -47,7 +47,7 @@
       table {
          width: 100%;
          thead > tr > th {
-            padding: 0 0.8rem 0.8rem 0.8rem;
+            padding: 0 0.5rem 0.8rem 0.5rem;
          }
          thead,
          tbody {
@@ -82,10 +82,10 @@
                }
                th,
                td {
-                  padding: 1rem 0.8rem;
+                  padding: 1rem 0.5rem;
                   font-size: 0.82rem;
                   font-weight: 400;
-                  > div {
+                  > div.colors {
                      padding: 0.3rem 0.4rem;
                      border-radius: 12px;
                      width: fit-content;
@@ -104,6 +104,31 @@
                      &.pending {
                         color: $color-6;
                         background-color: rgba($color-6, 0.1);
+                     }
+                  }
+                  .options {
+                     position: relative;
+                     svg {
+                        cursor: pointer;
+                     }
+                     .drop {
+                        position: absolute;
+                        top: 100%;
+                        right: 0;
+                        border: 1px solid fade-out($color-2, 0.94);
+                        background-color: $white;
+                        box-shadow: $box-shadow-2;
+                        z-index: 200;
+                        border-radius: 4px;
+                        li {
+                           text-transform: capitalize;
+                           padding: 0.7rem 1.5rem;
+                           transition: 0.2s ease-in;
+                           cursor: pointer;
+                           &:hover {
+                              background-color: $bg-2;
+                           }
+                        }
                      }
                   }
                }

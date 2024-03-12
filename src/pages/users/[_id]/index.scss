@@ -1,0 +1,91 @@
+.user__details {
+   .back__to__prev__page {
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      span {
+         font-size: 0.95rem;
+      }
+   }
+   .blacklist__user,
+   .activate__user {
+      font-size: 0.87rem;
+      border-radius: 8px;
+      letter-spacing: 1px;
+      padding: 0.5rem 1rem;
+      border-width: 1px;
+      border-style: solid;
+      text-transform: uppercase;
+      font-weight: 500;
+   }
+   .blacklist__user {
+      color: $color-7;
+      border-color: $color-7;
+   }
+   .activate__user {
+      color: $color-4;
+      border-color: $color-4;
+   }
+   .details {
+      background-color: $white;
+      box-shadow: $box-shadow-2;
+      border-radius: 4px;
+      border: 1px solid fade-out($color-1, 0.98);
+      .image {
+         --size: 6rem;
+         width: var(--size);
+         height: var(--size);
+         border-radius: 50%;
+         overflow: hidden;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         background-color: fade-out($color-2, 0.8);
+      }
+      .name {
+         text-transform: capitalize;
+         h4 {
+            font-size: 1.3rem;
+            color: $color-1;
+         }
+         span {
+            font-size: 0.9rem;
+            color: $color-2;
+         }
+      }
+      .user__tier {
+         position: relative;
+         margin: 0 3rem;
+         text-transform: capitalize;
+         font-size: 0.9rem;
+         font-weight: 500;
+         color: $color-2;
+         &::before,
+         &::after {
+            position: absolute;
+            content: '';
+            top: -1rem;
+            bottom: 0;
+            width: 1px;
+            height: 4.7rem;
+            background-color: fade-out($color-2, 0.85);
+         }
+         &::before {
+            left: -2rem;
+         }
+         &::after {
+            right: -2rem;
+         }
+      }
+      .bank__details {
+         color: $color-1;
+         h4 {
+            font-size: 1.35rem;
+         }
+         .account__details {
+            font-size: 0.75rem;
+            text-transform: capitalize;
+         }
+      }
+   }
+}

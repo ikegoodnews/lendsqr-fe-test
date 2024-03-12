@@ -1,18 +1,16 @@
 import {userConstants} from '../_constants';
 
-export const getAllUsers = (text) => {
-   return {
-      type: userConstants.GET_ALL_USERS,
-      // payload: {
-      //    id: new Date().getTime(),
-      //    text: text,
-      // },
-   };
-};
+const getAllUsers = (model) => ({
+   type: userConstants.GET_ALL_USERS,
+   // data: model,
+});
 
-// export const deleteUser = (id) => {
-//    return {
-//       type: 'DELETE_USER',
-//       payload: id,
-//    };
-// };
+const retrieveAllUsers = (model) => ({
+   type: userConstants.RETRIEVE_USERS_FROM_STORAGE,
+   // data: model,
+});
+
+export const userActions = {
+   getAllUsers,
+   retrieveAllUsers,
+};

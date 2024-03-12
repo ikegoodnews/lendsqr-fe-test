@@ -55,9 +55,10 @@ const Pagination = (props) => {
    }
 
    return (
-      <ul className={`pagination p-4 w-100 ${props.className}`}>
+      <ul className={`pagination p-4 w-100 d-flex align-items-center justify-content-between`}>
          <li className="">
-            {from} - {to} of {count}
+            {/* {from} - {to} of {count} */}
+            showing {from} out of {count}
          </li>
          <div className="lines d-flex align-items-center">
             {/* <li onClick={page === 0 ? null : handleFirstPageButtonClick} className={classNames('mx-3', {disabled: page === 0})}>
@@ -65,13 +66,17 @@ const Pagination = (props) => {
             </li> */}
             <li onClick={page === 0 ? null : handleBackButtonClick} className={classNames('d-flex align-items-center me-3', {disabled: page === 0})}>
                <Prev />
-               <span className="ms-1">Previous</span>
+               <span className="ms-1"></span>
             </li>
-            {lastPage > 5 ? button : buttons}
+            {/* {lastPage > 5 ? button : buttons} */}
+            <li className={classNames('pages mx-2', {active: true})}>1</li>
+            <li className={classNames('pages mx-2', {active: ''})}>2</li>
+            <li className={classNames('pages mx-2', {active: ''})}>3</li>
+            <li className={classNames('pages mx-2', {active: ''})}>4</li>
             <li
                onClick={page >= Math.ceil(count / rowsPerPage) - 1 ? null : handleNextButtonClick}
                className={classNames('ms-3 d-flex align-items-center', {disabled: page >= Math.ceil(count / rowsPerPage) - 1})}>
-               <span className="me-1">Next</span>
+               <span className="me-1"></span>
                <Next />
             </li>
             {/* <li

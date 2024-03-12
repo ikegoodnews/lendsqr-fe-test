@@ -55,12 +55,33 @@
       cursor: pointer;
       // background-color: aqua;
       margin: 1.3rem 0;
+      position: relative;
       span {
          font-size: 0.95rem;
          font-weight: 500;
          color: $color-2;
          text-transform: capitalize;
          margin: 0 0.5rem;
+      }
+      .dropdown {
+         position: absolute;
+         top: 100%;
+         left: 2rem;
+         width: 12rem;
+         background-color: $white;
+         box-shadow: $box-shadow-2;
+         z-index: 200;
+         // padding: 1rem;
+         li {
+            padding: 0.7rem 1.5rem;
+            font-size: 0.85rem;
+            color: $color-1;
+            text-transform: capitalize;
+            transition: 0.2s ease-in;
+            &:hover {
+               background-color: $bg-1;
+            }
+         }
       }
    }
 

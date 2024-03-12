@@ -1,18 +1,44 @@
-import {createStore, applyMiddleware} from 'redux';
-import {composeWithDevTools} from '@redux-devtools/extension';
-import {thunk} from 'redux-thunk';
-import rootReducer from '../_redux/reducer';
+import {createWrapper} from 'next-redux-wrapper';
+import {configureStore} from '@reduxjs/toolkit';
+import createSagaMiddleware from 'redux-saga';
+import {userConstants} from '@/_constants';
+import {persistStore} from 'redux-persist';
+import rootReducer from '@/_redux/reducer';
+import rootSaga from '@/_redux/saga';
 
-// const composeEnhancers = composeWithDevTools({
-//    // Specify here name, actionsDenylist, actionsCreators and other options
-// });
+const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(
-   rootReducer,
-   composeWithDevTools(
-      applyMiddleware(thunk),
-      // other store enhancers if any
-   ),
-);
+let store;
 
-export default store;
+const isClient = typeof window !== 'undefined';
+
+if (isClient) {
+   const {persistReducer} = require('redux-persist');
+   const storage = require('redux-persist/lib/storage').default;
+
+   const persistedReducer = persistReducer(
+      {
+         key: `${userConstants.USER_STORE_KEY}`,
+         storage,
+      },
+      rootReducer,
+   );
+
+   store = configureStore({
+      reducer: persistedReducer,
+      middleware: (getDefaultMiddleware) => getDefaultMiddleware({serializableCheck: false}).concat([sagaMiddleware]),
+   });
+
+   store.__PERSISTOR = persistStore(store);
+} else {
+   store = configureStore({
+      reducer: rootReducer,
+      middleware: (getDefaultMiddleware) => getDefaultMiddleware({serializableCheck: false}).concat([sagaMiddleware]),
+   });
+}
+
+store.sagaTask = sagaMiddleware.run(rootSaga);
+
+store.dispatch({type: userConstants.GET_ALL_USERS});
+
+export const wrapper = createWrapper(() => store);

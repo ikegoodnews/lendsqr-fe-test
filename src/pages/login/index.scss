@@ -1,5 +1,8 @@
 .login__page {
    background-color: $white;
+   padding: 0 !important;
+   animation: $fade1;
+   overflow: hidden;
    .welcome {
       // background-color: rgba(84, 95, 125, 0.15);
       box-shadow: $box-shadow;

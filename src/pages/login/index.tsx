@@ -32,11 +32,11 @@ const Login = () => {
    const toggleSecure = useCallback(() => setPassword((prev) => !prev), []);
 
    const handleSubmit = () => {
-      router.push('/dashboard');
+      router.push('/');
    };
 
    return (
-      <Layout className="login__page h-100 w-100">
+      <Layout className="login__page vh-100 w-100">
          <div className="row h-100">
             <div className="col-md-6">
                <div className="left">
@@ -89,7 +89,13 @@ const Login = () => {
                      <Link href="/forgot-password" className="forgot-pass my-3 text-uppercase">
                         forgot password?
                      </Link>
-                     <button type="submit" disabled={!canSubmit} className="submit w-100 mt-4 text-uppercase">
+                     <button
+                        type="submit"
+                        disabled={!canSubmit}
+                        title={'Input valid test login details'}
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        className="submit w-100 mt-4 text-uppercase">
                         log in
                      </button>
                   </Formsy>

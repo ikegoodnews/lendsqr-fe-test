@@ -12,6 +12,7 @@ export const useLocationCode = () => {
    const home = asPath === '/';
    const dashboard = asPath === '/dashboard';
    const users = asPath === '/users';
+   const usersDetails = pathname === '/users/[_id]';
    const guarantors = asPath === '/guarantors';
    const loans = asPath === '/loans';
    const decision_models = asPath === '/decision_models';
@@ -36,7 +37,7 @@ export const useLocationCode = () => {
 
    if (dashboard) {
       return 1;
-   } else if (home || users) {
+   } else if (home || users || usersDetails) {
       return 2;
    } else if (guarantors) {
       return 3;
