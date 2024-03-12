@@ -80,7 +80,7 @@ const Header = () => {
                <Pill />
             </div>
          </div>
-         {view999 && <i className="fa fa-bars ms-4" id="sidebarIcon" onClick={ModalCenter.openModal} aria-hidden="true"></i>}
+         {view999 && <i className="fa fa-bars me-4" id="sidebarIcon" onClick={ModalCenter.openModal} aria-hidden="true"></i>}
       </header>
    ) : null;
 };

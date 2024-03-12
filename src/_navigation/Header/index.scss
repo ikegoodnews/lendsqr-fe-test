@@ -6,6 +6,11 @@ header {
    position: relative;
    z-index: 202;
 
+   #sidebarIcon {
+      font-size: 1.5rem;
+      cursor: pointer;
+   }
+
    .logo-link {
       margin-left: 0.7rem;
       .logo {
