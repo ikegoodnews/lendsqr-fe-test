@@ -1,10 +1,10 @@
 import {nanoid} from 'nanoid';
 
 export const tabLists = [
-   {id: nanoid(), label: 'general details'},
-   {id: nanoid(), label: 'documents'},
-   {id: nanoid(), label: 'bank details'},
-   {id: nanoid(), label: 'loans'},
-   {id: nanoid(), label: 'savings'},
-   {id: nanoid(), label: 'app and system'},
+   {id: nanoid(), tab_number: 1, label: 'General Details'},
+   {id: nanoid(), tab_number: 2, label: 'Documents'},
+   {id: nanoid(), tab_number: 3, label: 'Bank Details'},
+   {id: nanoid(), tab_number: 4, label: 'Loans'},
+   {id: nanoid(), tab_number: 5, label: 'Savings'},
+   {id: nanoid(), tab_number: 6, label: 'App and System'},
 ];

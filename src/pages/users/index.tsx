@@ -124,7 +124,7 @@ const TableRow = ({user, i}: any) => {
             pathname: `/users/[_id]`,
             query: {
                _id: user?._id,
-               username: user?.username,
+               // username: user?.username,
             },
          },
          `/users/[_id]`,
@@ -136,8 +136,8 @@ const TableRow = ({user, i}: any) => {
          <td className="ps-0">{user?.organization}</td>
          <td>{user?.username}</td>
          <td>{user?.email}</td>
-         <td>{user?.phone}</td>
-         <td>{user?.registered ? format(new Date(user?.registered), 'MMM dd, yyyy p') : '-'}</td>
+         <td>{user?.phone_number}</td>
+         <td>{user?.date_registered ? format(new Date(user?.date_registered), 'MMM dd, yyyy p') : '-'}</td>
          <td className="text-capitalize">
             <div
                className={classNames('colors', {

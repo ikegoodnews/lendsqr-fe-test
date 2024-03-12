@@ -1,18 +1,70 @@
 import Layout from '@/_components/Layout';
 import Image from 'next/image';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 import {numberWithCommas} from '@/_helpers';
 import {tabLists} from '@/_constants';
+import classNames from 'classnames';
 import StarRating from 'react-svg-star-rating'; // /dist/StarRating
 
 import ArrowBackIcon from '../../../../public/_assets/icons/go-back-arrow.svg';
 import Avatar from '../../../../public/_assets/images/avataruser.png';
 import AvatarIcon from '../../../../public/_assets/icons/user-details-avatar.svg';
+import {useDispatch, useSelector} from 'react-redux';
+import {userActions} from '@/_actions';
 
 const UserDetails = () => {
    const router = useRouter();
+   const dispatch = useDispatch();
+   const {_id} = router.query;
+   const {IsRequestingAllUsers, allUsers} = useSelector((s: any) => s.user);
+   const [activeTab, setActiveTab] = useState(1);
    const [starRating, setStarRating] = useState(1);
+
+   useEffect(() => {
+      dispatch(userActions.getAllUsers());
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, []);
+
+   const user = allUsers?.find((obj: any) => obj._id === _id);
+   console.log(`user=====>`, user);
+
+   const personalInformation = [
+      {label: 'full name', value: user?.username},
+      {label: 'phone number', value: user?.phone_number},
+      {label: 'email address', value: user?.email},
+      {label: 'bvn', value: user?.bvn},
+      {label: 'gender', value: user?.gender},
+      {label: 'marital status', value: user?.marital_status},
+      {label: 'children', value: user?.children},
+      {label: 'type of residence', value: user?.residence_type},
+   ];
+   const educationAndEmployment = [
+      {label: 'level of education', value: user?.education_level},
+      {label: 'employment status', value: user?.employment_status},
+      {label: 'sector of employment', value: user?.employment_sector},
+      {label: 'duration of employment', value: user?.employment_duration},
+      {label: 'office email', value: user?.office_email},
+      {label: 'monthly income', value: numberWithCommas(user?.monthly_income)},
+      {label: 'loan repayment', value: numberWithCommas(user?.loan_repayment)},
+   ];
+   const socials = [
+      {label: 'twitter', value: user?.twitter},
+      {label: 'facebook', value: user?.facebook},
+      {label: 'instagram', value: user?.instagram},
+   ];
+   const guarantor = [
+      {label: 'full name', value: user?.username},
+      {label: 'phone number', value: user?.phone_number},
+      {label: 'email address', value: user?.email},
+      {label: 'relationship', value: user?.email},
+   ];
+   // const guarantor2 = [
+   //    {label: 'full name', value: user?.username},
+   //    {label: 'phone number', value: user?.phone_number},
+   //    {label: 'email address', value: user?.email},
+   //    {label: 'relationship', value: user?.email},
+   // ];
 
    const handleGoBack = () => {
       router.back();
@@ -56,7 +108,7 @@ const UserDetails = () => {
                      initialRating={starRating}
                      activeColor="#E9B200"
                      hoverColor="#E9B200"
-                     emptyColor="rgba(255, 255, 255, .3)"
+                     emptyColor="#E9B20056"
                      roundedCorner={true}
                      handleOnClick={handleStarClick}
                      innerRadius={20}
@@ -75,11 +127,67 @@ const UserDetails = () => {
             </div>
             <ul className="d-flex align-items-center justify-content-around">
                {tabLists?.map((list, i) => (
-                  <li key={i} className="">
+                  <li key={i} onClick={() => setActiveTab(list.tab_number)} className={classNames('', {active: activeTab === list.tab_number})}>
                      {list.label}
                   </li>
                ))}
             </ul>
+         </div>
+
+         <div className="comple">
+            <div className="personal__information">
+               <h5 className="">Personal Information</h5>
+               <div className="d-flex align-items-center">
+                  {personalInformation?.map((info, i) => (
+                     <div key={i} className="">
+                        <p className="">{info?.label}</p>
+                        <h6 className="">{info?.value}</h6>
+                     </div>
+                  ))}
+               </div>
+            </div>
+            <div className="personal__information">
+               <h5 className="">education and employment</h5>
+               <div className="d-flex align-items-center">
+                  {educationAndEmployment?.map((edu, i) => (
+                     <div key={i} className="">
+                        <p className="">{edu?.label}</p>
+                        <h6 className="">{edu?.value}</h6>
+                     </div>
+                  ))}
+               </div>
+            </div>
+            <div className="personal__information">
+               <h5 className="">socials</h5>
+               <div className="d-flex align-items-center">
+                  {socials?.map((social, i) => (
+                     <div key={i} className="">
+                        <p className="">{social?.label}</p>
+                        <h6 className="">{social?.value}</h6>
+                     </div>
+                  ))}
+               </div>
+            </div>
+            <div className="personal__information">
+               <h5 className="">guarantor</h5>
+               <div className="d-flex align-items-center">
+                  {/* {user?.guarantors?.slice(0, 1)?.map((guarantor, i) => (
+                     <div key={i} className="">
+                        <p className="">{guarantor?.}</p>
+                        <h6 className=""></h6>
+                  </div>
+               ))} */}
+               </div>
+            </div>
+            <div className="personal__information">
+               <h5 className=""></h5>
+               <div className="d-flex align-items-center">
+                  <div className="">
+                     <p className=""></p>
+                     <h6 className=""></h6>
+                  </div>
+               </div>
+            </div>
          </div>
       </Layout>
    );

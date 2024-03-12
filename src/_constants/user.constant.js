@@ -14,5 +14,5 @@ export const userConstants = {
 
    TOKEN_HAS_EXPIRED: 'TOKEN_HAS_EXPIRED',
 
-   USER_URI: 'https://run.mocky.io/v3/8140500f-f58d-49de-a3e5-798437cb162d',
+   USER_URI: 'https://run.mocky.io/v3/02c29c72-c4b2-4218-a0c1-8ce95c9f8222',
 };
